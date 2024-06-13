@@ -24,6 +24,7 @@
     "vite": "^4.5.3"
   },
   "dependencies": {
+    "jsonpath-plus": "^9.0.0",
     "svelte-json-tree": "^2.2.0"
   }
 }

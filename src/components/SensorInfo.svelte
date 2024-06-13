@@ -22,13 +22,13 @@
       placeholder="Query"
       bind:value={query}
       disabled={!doParse}
-      class="grow font-mono !w-fit !h-fit"
+      class="grow font-mono !w-fit !h-fit !mb-0"
     />
   </div>
   <ul class="flex flex-col">
     {#each sensor as data}
       <li class="list-none">
-        <SensorData {data} parse={doParse} />
+        <SensorData {data} parse={doParse} {query} />
       </li>
     {/each}
   </ul>
