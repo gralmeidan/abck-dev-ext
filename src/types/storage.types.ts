@@ -1,7 +1,4 @@
-export interface Cookie {
-  name: string;
-  value: string;
-}
+export type Cookie = chrome.cookies.Cookie;
 
 export interface Storage {
   sensor: string[];

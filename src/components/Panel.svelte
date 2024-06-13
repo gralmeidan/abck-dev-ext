@@ -1,24 +1,38 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Action, onMessage } from '../helpers/messaging';
+  import type { Cookie } from '../types/storage.types';
+  import CookiesInfo from './CookiesInfo.svelte';
 
   let sensor: string[] = [];
+  let cookies: Cookie[] = [];
 
   onMount(() => {
-    console.log('Mounted');
     onMessage(Action.SENSOR, data => {
-      console.log('Received', data);
       sensor = [data, ...sensor];
+    });
+
+    onMessage(Action.COOKIES, data => {
+      cookies = data;
     });
   });
 </script>
 
-<h1>Init</h1>
-
-{#if sensor.length}
-  <ul>
-    {#each sensor as item}
-      <li>{item}</li>
-    {/each}
-  </ul>
-{/if}
+<main class="m-4">
+  <section>
+    <h1>Cookies</h1>
+    <CookiesInfo bind:cookies />
+  </section>
+  <section>
+    <h1>sensor_data</h1>
+    <ul class="flex flex-col">
+      {#each sensor as data}
+        <li class="list-none">
+          <code class="whitespace-nowrap font-mono overflow-x-clip block">
+            {data}
+          </code>
+        </li>
+      {/each}
+    </ul>
+  </section>
+</main>

@@ -1,3 +1,4 @@
+import { COOKIE_NAMES, CookieName } from './constants/cookie.constants';
 import { Action, onMessage, sendMessage } from './helpers/messaging';
 
 chrome.webRequest.onBeforeRequest.addListener(
@@ -35,9 +36,14 @@ chrome.webRequest.onBeforeRequest.addListener(
 
 chrome.webRequest.onCompleted.addListener(
   details => {
-    console.log('Completed', details.url);
     chrome.cookies.getAll({ url: details.url }, cookies => {
-      console.log('Cookies', cookies);
+      const data = cookies?.filter(cookie =>
+        COOKIE_NAMES.includes(cookie.name as CookieName)
+      );
+
+      if (data?.length) {
+        sendMessage(Action.COOKIES, data);
+      }
     });
   },
   { urls: ['<all_urls>'] },
