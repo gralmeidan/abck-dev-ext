@@ -3,15 +3,19 @@
   "description": "Shows abck info",
   "version": "1.0",
   "manifest_version": 3,
-  "action": {
-    "default_popup": "src/popup/index.html"
-  },
   "background": {
     "service_worker": "src/background.ts"
   },
   "permissions": [
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "webRequest",
+    "cookies"
+  ],
+  "devtools_page": "src/devtools/index.html",
+  "host_permissions": [
+    "*://*/*",
+    "file://*/*"
   ]
 }

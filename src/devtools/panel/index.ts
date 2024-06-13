@@ -1,10 +1,10 @@
-import '../app.css';
-import Popup from './Popup.svelte';
+import '../../app.css';
+import Panel from '../../components/Panel.svelte';
 
 const target = document.getElementById('app');
 
 function render() {
-  new Popup({ target });
+  new Panel({ target });
 }
 
 document.addEventListener('DOMContentLoaded', render);
