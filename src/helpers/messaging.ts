@@ -3,11 +3,13 @@ import type { Cookie } from '../types/storage.types';
 export enum Action {
   SENSOR = 'sensor_data',
   COOKIES = 'cookies_data',
+  NAVIGATED = 'navigated',
 }
 
 export type MessageData<T extends Action> = {
   [Action.SENSOR]: string;
   [Action.COOKIES]: Cookie[];
+  [Action.NAVIGATED]: string;
 }[T];
 
 export function sendMessage<T extends Action>(action: T, data: MessageData<T>) {

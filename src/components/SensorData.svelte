@@ -12,7 +12,6 @@
       const parsed = parseSensor(data);
       const result = JSONPath({ json: parsed, path: query || '$' });
 
-      console.log(result);
       if (result?.[0]) {
         return result.length > 1 ? result : result[0];
       }

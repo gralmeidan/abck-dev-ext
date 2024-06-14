@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "jsonpath-plus": "^9.0.0",
-    "svelte-json-tree": "^2.2.0"
+    "svelte-json-tree": "^2.2.0",
+    "tldts": "^6.1.25"
   }
 }

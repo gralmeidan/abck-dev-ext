@@ -5,3 +5,7 @@
 .line-break-anywhere {
   line-break: anywhere;
 }
+
+button {
+  @apply p-1;
+}
