@@ -23,6 +23,12 @@
       });
     });
 
+    chrome.cookies.getAll({ domain }, data => {
+      if (cookies.length === 0) {
+        cookies = data;
+      }
+    });
+
     chrome.devtools.network.onNavigated.addListener(url => {
       getInspectedDomain().then(url => {
         if (url !== domain) {

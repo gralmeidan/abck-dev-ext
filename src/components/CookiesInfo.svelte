@@ -2,6 +2,7 @@
   import type { Cookie } from '../types/storage.types';
   import { COOKIE_NAMES, CookieName } from '../constants/cookie.constants';
   import LedLight from './LedLight.svelte';
+  import { AbckUtils } from '../helpers/abck';
 
   export let cookies: Cookie[] = [];
 
@@ -11,20 +12,27 @@
   }, {}) as Record<string, Cookie>;
 
   $: abck = cookiesHash[CookieName.ABCK];
-  $: isAbckValid = abck?.value?.length === 485 || abck?.value?.length === 489;
+
+  $: isAbckLengthValid =
+    abck?.value?.length === 485 || abck?.value?.length === 489;
+
+  $: isAbckTailValid = AbckUtils.hasValidTail(abck?.value ?? '');
 </script>
 
 <div>
   <h2 class="text-lg my-3">
     Abck:
-    <span class={isAbckValid ? 'valid-abck' : 'invalid-abck'}>
+    <span class={isAbckLengthValid ? 'valid-abck' : 'invalid-abck'}>
       {abck?.value?.length ?? 'N/A'}
     </span>
 
     {#if abck?.value}
       {' - '}
       <code>
-        {abck.value.slice(0, 10)}...
+        {abck.value.slice(0, 10)}...<span
+          class={isAbckTailValid ? 'valid-abck' : 'invalid-abck'}
+          >{abck.value.slice(-16)}</span
+        >
       </code>
     {/if}
   </h2>

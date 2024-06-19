@@ -1,5 +1,5 @@
 chrome.devtools.panels.create(
-  'My Panel',
+  'Abck',
   null,
   '../src/devtools/panel/index.html',
   panel => {
